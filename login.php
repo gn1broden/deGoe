@@ -63,7 +63,7 @@ if(isset($_POST['user']) && isset($_POST['password']))
     //if($email == $correctemail && $password == $correctpass)
     if(mysqli_num_rows($result) > 0){
         //Skapa en session med namn login och tilldelar värdet 1
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = $user ;
         $_SESSION['password'] = $password;
         $_SESSION['userId'] = $data['userId'];
         $_SESSION['beer'] = $data['beer'];
