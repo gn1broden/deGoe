@@ -2,6 +2,11 @@ html{
     font-family: 'Roboto', sans-serif;
 }
 
+
+h1{
+    font-size: 100px;
+}
+
 // LOGIN PAGE
 .background-wrapper{
     background-image: url("../img/beer.jpg");
@@ -15,7 +20,6 @@ html{
 }
 
 .login-form{
-   
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.4);
     padding: 40px; 
@@ -40,3 +44,22 @@ html{
     }
 }
 // LOGIN PAGE END
+
+//UserPAGE 
+
+.user-page{
+
+    body{
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .update-form{
+        margin: 0 auto;
+    }
+
+    h1{
+        font-size: 100px;
+    }
+
+}

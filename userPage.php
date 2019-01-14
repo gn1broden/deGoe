@@ -1,5 +1,6 @@
 <?php
 session_start();
+//date_default_timezone_set('europe/London');
 $user = $_SESSION['user'];
 $beer = $_SESSION['beer'];
 $wine = $_SESSION['wine'];
@@ -7,13 +8,13 @@ $spirit = $_SESSION['spirit'];
 $shot = $_SESSION['shot'];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="user-page">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/input.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/input.css">
     <title><?php $user ?></title>
 </head>
 <body>
@@ -36,8 +37,9 @@ $shot = $_SESSION['shot'];
     <input class="shot" type="number" name="shot" value="0" min="0" max="100" step="1">
     <p>Kommentar</p>
     <input class="comment" type="text" name="comment">
-    <input type="submit" name="submit" value="Uppdatera">
+    <input type="submit" onclick="myAlert('Sidan kommer att laddas om med fräsha nuffror!')" name="submit" value="Uppdatera">
 </form>
+
 
 <?php
 
@@ -49,8 +51,6 @@ $shot = $_SESSION['shot'];
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
 
-        echo 'hej';
-        
         //VALUES FROM INPUT
         $postBeer = $_POST['beer'];
         $postWine = $_POST['wine'];
@@ -65,14 +65,28 @@ $shot = $_SESSION['shot'];
         $spirit += $postSpirit;
         $shot += $postShot;
 
-        $timestamp = date("Y-m-d h:i:sa");
+        $_SESSION['beer'] = $beer;
+        $_SESSION['wine'] = $wine;
+        $_SESSION['spirit'] = $spirit;
+        $_SESSION['shot'] = $shot;
+
+        $timestamp = date("Y-m-d H:i:sa");
 
         mysqli_query($con,"INSERT INTO log (user,beer,wine,spirit,shot,comment,date) VALUES ('$user','$postBeer','$postWine','$postSpirit','$postShot','$comment','$timestamp')");
         mysqli_query($con,"UPDATE user SET beer = '$beer', wine = '$wine', spirit = '$spirit', shot = '$shot' WHERE user = '$user'");
 
-
-    }
+    } 
 ?>
     
 </body>
+
 </html>
+
+<script>
+    function myAlert(text){
+        alert(text);
+
+        header("Refresh:0");
+    }
+</script>
+
