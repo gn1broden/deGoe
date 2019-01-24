@@ -19,7 +19,6 @@
         $postShot = $_POST['shot'];
         $comment = $_POST['comment'];
 
-
         //TOTAL
         $beer += $postBeer;
         $wine += $postWine;

@@ -42,11 +42,13 @@
             header('location:userPage.php');
         }
         else{
-            alert("Felaktiga uppgifter, fyll i igen!");
+            echo "<div class='alertBox'><h3>Felaktiga uppgifter, försök igen</h3></div>";
         }
 
 
     }
     include "templates/login.html";
 ?>
+
+
 
